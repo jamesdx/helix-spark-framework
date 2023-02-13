@@ -42,5 +42,10 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.helix</groupId>
+            <artifactId>helix-spark-common-core</artifactId>
+        </dependency>
     </dependencies>
 </project>
