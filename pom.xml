@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>helix-spark-common</module>
+        <module>helix-spark-common-core</module>
     </modules>
     <packaging>pom</packaging>
     <properties>
@@ -19,6 +20,7 @@
         <spring-boot.version>3.0.2</spring-boot.version>
         <lombok.version>1.18.26</lombok.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
+        <helix-spark.version>1.0-SNAPSHOT</helix-spark.version>
     </properties>
 
     <dependencyManagement>
@@ -42,7 +44,11 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.helix</groupId>
+                <artifactId>helix-spark-common-core</artifactId>
+                <version>${helix-spark.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>
