@@ -28,7 +28,5 @@ public class MessageUtils {
             log.error("System can not load the {} message ", messageKey);
             return messageKey;
         }
-
     }
-
 }

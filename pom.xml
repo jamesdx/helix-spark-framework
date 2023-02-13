@@ -43,9 +43,16 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.helix</groupId>
                 <artifactId>helix-spark-common-core</artifactId>
+                <version>${helix-spark.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.helix</groupId>
+                <artifactId>helix-spark-common-i18n</artifactId>
                 <version>${helix-spark.version}</version>
             </dependency>
         </dependencies>
