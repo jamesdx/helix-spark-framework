@@ -15,6 +15,7 @@
     <modules>
         <module>helix-spark-common-web</module>
         <module>helix-spark-common-i18n</module>
+        <module>helix-spark-common-core</module>
     </modules>
     <packaging>pom</packaging>
 

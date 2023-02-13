@@ -5,15 +5,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 /**
- * All rights Reserved, Designed By www.helix.cn
+ * All rights Reserved, Designed By www.hgplan.cn
  *
  * @author [Allen Wang]
  * @version V1.0
- * Copyright 2023 www.helix.cn Inc. All rights reserved.
- * @date 2023/2/13 14:54
+ * Copyright 2023 www.hgplan.cn Inc. All rights reserved.
+ * @date 2023/2/13 15:22
  **/
 public class SpringUtils implements ApplicationContextAware {
-
     private static ApplicationContext context;
 
     @Override
@@ -56,5 +55,4 @@ public class SpringUtils implements ApplicationContextAware {
     public static <T> T getBean(String name, Class<T> beanClass) {
         return context.getBean(name, beanClass);
     }
-
 }
