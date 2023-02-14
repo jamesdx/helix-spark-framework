@@ -31,5 +31,10 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.helix</groupId>
+            <artifactId>helix-spark-common-i18n</artifactId>
+        </dependency>
+
     </dependencies>
 </project>
