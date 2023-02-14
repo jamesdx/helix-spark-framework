@@ -3,15 +3,18 @@ package com.helix.spark.core.spring;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 
 /**
  * All rights Reserved, Designed By www.hgplan.cn
+ * 必要条件： 请在 SpringBoot 启动类，调用 SpringUtils#setContext(ApplicationContext applicationContext) 方法
  *
  * @author [Allen Wang]
  * @version V1.0
  * Copyright 2023 www.hgplan.cn Inc. All rights reserved.
  * @date 2023/2/13 15:22
  **/
+@Component
 public class SpringUtils implements ApplicationContextAware {
     private static ApplicationContext context;
 
@@ -20,6 +23,19 @@ public class SpringUtils implements ApplicationContextAware {
         if (SpringUtils.context == null) {
             context = applicationContext;
         }
+    }
+
+    /**
+     * 必要条件： 请在 SpringBoot 启动类，调用 SpringUtils#setContext(ApplicationContext applicationContext) 方法
+     *
+     * @param applicationContext
+     * @return void
+     * @author Allen Wang
+     * @date 2023/2/14 09:56
+     */
+
+    public static void setContext(ApplicationContext applicationContext) {
+        context = applicationContext;
     }
 
     /**
