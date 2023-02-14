@@ -4,6 +4,7 @@ import com.helix.spark.core.spring.SpringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.stereotype.Component;
 
 /**
  * All rights Reserved, Designed By www.helix.cn
@@ -14,6 +15,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
  * @date 2023/2/13 15:05
  **/
 @Slf4j
+@Component
 public class MessageUtils {
     private MessageUtils() {
         throw new IllegalStateException("Utility class");

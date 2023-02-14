@@ -13,7 +13,6 @@ import com.helix.spark.i18n.utils.MessageUtils;
 public enum ResultEnum {
     SUCCESS(0, "SUCCESS"),
     ERROR(1, "ERROR");
-
     /**
      * 返回状态码
      */
