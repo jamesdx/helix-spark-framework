@@ -55,6 +55,12 @@
                 <artifactId>helix-spark-common-i18n</artifactId>
                 <version>${helix-spark.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.helix</groupId>
+                <artifactId>helix-spark-common-web</artifactId>
+                <version>${helix-spark.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

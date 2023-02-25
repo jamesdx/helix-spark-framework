@@ -4,11 +4,11 @@ import com.helix.spark.core.model.HelixSparkGlobalConstants;
 import com.helix.spark.i18n.utils.MessageUtils;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 /**
  * All rights Reserved, Designed By www.helix.cn
@@ -30,21 +30,24 @@ public class Result<T> implements Serializable {
     private String code = HelixSparkGlobalConstants.UNIFY_RESULT_DEFAULT_SUCCESS_CODE;
     private String message;
 
-    private Date timestamp = new Date();
+    private ZonedDateTime timestamp = ZonedDateTime.now();
 
     private T data;
 
 
-    /** returns only status when response is successful
-    * @param
-    * @return com.helix.spark.web.response.Result
-    * @author Allen Wang
-    * @date 2023/2/14 11:43
-    */
+    /**
+     * returns only status when response is successful
+     *
+     * @param
+     * @return com.helix.spark.web.response.Result
+     * @author Allen Wang
+     * @date 2023/2/14 11:43
+     */
 
     public static <T> Result success() {
         return Result.builder().status(ResultEnum.SUCCESS.getStatusCode()).build();
     }
+
     /**
      * Default Success Result
      * code = 200
@@ -57,7 +60,7 @@ public class Result<T> implements Serializable {
      */
 
     public static <T> Result success(T data) {
-        Result result = Result.builder().status(ResultEnum.SUCCESS.getStatusCode()).code("200").message(ResultEnum.SUCCESS.getStatusMsg()).data(data).build();
+        Result result = Result.builder().status(ResultEnum.SUCCESS.getStatusCode()).code("200").message(ResultEnum.SUCCESS.getStatusMsg()).data(data).timestamp(ZonedDateTime.now()).build();
         log.debug("The Result is {}", result.toString());
         return result;
     }
@@ -72,29 +75,44 @@ public class Result<T> implements Serializable {
      */
 
     public static <T> Result success(T data, String code) {
-        Result result = Result.builder().status(ResultEnum.SUCCESS.getStatusCode()).code(code).message(MessageUtils.getMessage(code)).data(data).build();
+        Result result = Result.builder().status(ResultEnum.SUCCESS.getStatusCode()).code(code).message(MessageUtils.getMessage(code)).data(data).timestamp(ZonedDateTime.now()).build();
         log.debug("The Result is {}", result.toString());
         return result;
     }
-    /** return status code when response is failure.
-    * @param
-    * @return com.helix.spark.web.response.Result
-    * @author Allen Wang
-    * @date 2023/2/14 11:45
-    */
+
+    /**
+     * return status code when response is failure.
+     *
+     * @param
+     * @return com.helix.spark.web.response.Result
+     * @author Allen Wang
+     * @date 2023/2/14 11:45
+     */
 
     public static <T> Result failWithStatus() {
-        return Result.builder().status(ResultEnum.ERROR.getStatusCode()).build();
+        return Result.builder().status(ResultEnum.ERROR.getStatusCode()).timestamp(ZonedDateTime.now()).build();
     }
+
     public static <T> Result fail() {
-        Result result = Result.builder().status(ResultEnum.ERROR.getStatusCode()).code(HelixSparkGlobalConstants.UNIFY_RESULT_DEFAULT_FAIL_CODE).message(MessageUtils.getMessage(ResultEnum.ERROR.getStatusMsg())).build();
+        Result result = Result.builder().status(ResultEnum.ERROR.getStatusCode()).code(HelixSparkGlobalConstants.UNIFY_RESULT_DEFAULT_FAIL_CODE).message(MessageUtils.getMessage(ResultEnum.ERROR.getStatusMsg())).timestamp(ZonedDateTime.now()).build();
         log.error("Failed API Response: {}", result.toString());
         return result;
     }
 
 
     public static <T> Result fail(String code) {
-        Result result = Result.builder().status(ResultEnum.ERROR.getStatusCode()).code(code).message(MessageUtils.getMessage(code)).build();
+        Result result = Result.builder().status(ResultEnum.ERROR.getStatusCode()).code(code).message(MessageUtils.getMessage(code)).timestamp(ZonedDateTime.now()).build();
+        log.error("Failed API Response: {}", result.toString());
+        return result;
+    }
+
+    public static <T> Result fail(String code, String errorMessage) {
+        Result result = null;
+        if (StringUtils.isNotEmpty(errorMessage)) {
+            result = Result.builder().status(ResultEnum.ERROR.getStatusCode()).code(code).message(errorMessage).timestamp(ZonedDateTime.now()).build();
+        } else {
+            result = Result.builder().status(ResultEnum.ERROR.getStatusCode()).code(code).message(MessageUtils.getMessage(code)).timestamp(ZonedDateTime.now()).build();
+        }
         log.error("Failed API Response: {}", result.toString());
         return result;
     }
